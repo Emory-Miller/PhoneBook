@@ -50,7 +50,7 @@ public class PhoneBook {
     }
 
     public String reverseLookup(String phoneNumber)  {
-        Set<String> keys = getMap().keySet();
+        Set<String> keys = phonebook.keySet();
         String result = "";
         for (String key : keys){
             if (phonebook.get(key).contains(phoneNumber)){
@@ -61,7 +61,7 @@ public class PhoneBook {
     }
 
     public List<String> getAllContactNames() {
-        Set<String> keys = getMap().keySet();
+        Set<String> keys = phonebook.keySet();
         List<String> result = new ArrayList<>(keys);
          return result;
     }
