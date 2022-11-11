@@ -21,24 +21,28 @@ public class PhoneBook {
     }
 
     public void add(String name, String phoneNumber) {
-        phonebook.put(name, new ArrayList<>());
-        phonebook.get(name).add(phoneNumber);
+        this.phonebook.put(name, new ArrayList<>());
+        this.phonebook.get(name).add(phoneNumber);
     }
 
     public void addAll(String name, String... phoneNumbers) {
-        phonebook.put(name, new ArrayList<String>(List.of(phoneNumbers)));
+        this.phonebook.put(name, new ArrayList<String>(List.of(phoneNumbers)));
+
+//        ArrayList<String> a = new ArrayList<>();
+//        a.addAll(Arrays.asList(phoneNumbers));
+//        this.phonebook.put(name,a);
     }
 
     public void remove(String name) {
-        phonebook.remove(name);
+        this.phonebook.remove(name);
     }
 
     public Boolean hasEntry(String name) {
-        return phonebook.containsKey(name);
+        return this.phonebook.containsKey(name);
     }
 
     public Boolean hasEntry(String name, String phoneNumber){
-        if (phonebook.containsKey(name) && (phonebook.get(name).contains(phoneNumber))){
+        if (this.phonebook.containsKey(name) && (this.phonebook.get(name).contains(phoneNumber))){
             return true;
         } else {
             return false;
@@ -46,27 +50,36 @@ public class PhoneBook {
     }
 
     public List<String> lookup(String name) {
-        return phonebook.get(name);
+        return this.phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber)  {
-        Set<String> keys = phonebook.keySet();
-        String result = "";
-        for (String key : keys){
-            if (phonebook.get(key).contains(phoneNumber)){
-                result = key;
+//        Set<String> keys = this.phonebook.keySet();
+//        String result = "";
+//        for (String key : keys){
+//            if (this.phonebook.get(key).contains(phoneNumber)){
+//                result = key;
+//            }
+//        }
+//        return result;
+
+        for (String name : this.getAllContactNames()){
+            if (this.lookup(name).contains(phoneNumber)){
+                return name;
             }
         }
-        return result;
+        return null;
     }
 
     public List<String> getAllContactNames() {
-        Set<String> keys = phonebook.keySet();
-        List<String> result = new ArrayList<>(keys);
-         return result;
+//        Set<String> keys = this.phonebook.keySet();
+//        List<String> result = new ArrayList<>(keys);
+//         return result;
+
+        return new ArrayList<>(this.phonebook.keySet());
     }
 
     public Map<String, List<String>> getMap() {
-        return phonebook;
+        return this.phonebook;
     }
 }
